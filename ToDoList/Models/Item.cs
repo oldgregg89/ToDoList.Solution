@@ -8,11 +8,17 @@ namespace ToDoList.Models
     public string Description { get; set; }
     public int Id { get; }
 
+    public Item(string description)
+    {
+      Description = description;
+    }
+
     public Item(string description, int id)
     {
-        Id = id;
-        Description = description;
+      Id = id;
+      Description = description;
     }
+
     public static List<Item> GetAll()
     {
       List<Item> allItems = new List<Item> { };
