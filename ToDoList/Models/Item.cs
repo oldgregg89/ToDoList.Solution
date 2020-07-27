@@ -6,7 +6,7 @@ namespace ToDoList.Models
   public class Item
   {
     public string Description { get; set; }
-    public int Id { get; }
+    public long Id { get; set; }
 
     public Item(string description)
     {
@@ -41,6 +41,7 @@ namespace ToDoList.Models
       }
       return allItems;
     }
+    
     public override bool Equals(System.Object otherItem)
     {
       if (!(otherItem is Item))
@@ -50,8 +51,9 @@ namespace ToDoList.Models
       else
       {
         Item newItem = (Item) otherItem;
+        bool idEquality = (this.Id == newItem.Id);
         bool descriptionEquality = (this.Description == newItem.Description);
-        return descriptionEquality;
+        return (idEquality && descriptionEquality);
       }
     }
 
@@ -72,6 +74,24 @@ namespace ToDoList.Models
     {
       Item placeholderItem = new Item("placeholder item");
       return placeholderItem;
+    }
+    public void Save()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;           // create a new command object
+      cmd.CommandText = @"INSERT INTO items (description) VALUES (@ItemDescription);";   //command object has a field of 'commandText'
+      MySqlParameter description = new MySqlParameter(); // instantiate new Parameter object
+      description.ParameterName = "@ItemDescription";   // defining the ParameterName of ^ object [parameter] 
+      description.Value = this.Description;    // definining the Value of this ^^ object [parameter]
+      cmd.Parameters.Add(description);      // adding the Parameter object to the Parameters field of the command object
+      cmd.ExecuteNonQuery();
+      Id = (int) cmd.LastInsertedId;
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
     }
   }
 }
