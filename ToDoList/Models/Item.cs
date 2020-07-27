@@ -8,12 +8,11 @@ namespace ToDoList.Models
     public string Description { get; set; }
     public int Id { get; }
 
-    public Item(string description)
+    public Item(string description, int id)
     {
+        Id = id;
         Description = description;
     }
-
-
     public static List<Item> GetAll()
     {
       List<Item> allItems = new List<Item> { };
@@ -36,9 +35,32 @@ namespace ToDoList.Models
       }
       return allItems;
     }
+    public override bool Equals(System.Object otherItem)
+    {
+      if (!(otherItem is Item))
+      {
+        return false;
+      }
+      else
+      {
+        Item newItem = (Item) otherItem;
+        bool descriptionEquality = (this.Description == newItem.Description);
+        return descriptionEquality;
+      }
+    }
 
     public static void ClearAll()
     {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM items;";
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
     }
     public static Item Find(int searchId)
     {
