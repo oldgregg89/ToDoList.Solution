@@ -18,54 +18,64 @@ namespace ToDoList.Tests
     {
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=epicodus;port=3306;database=to_do_list_test;";
     }
-//     [TestMethod]
-//     public void ItemConstructor_CreatesInstanceOfItem_Item()
-//     {
-//       Item newItem = new Item("test");
-//       Assert.AreEqual(typeof(Item), newItem.GetType());
-//     }
-//     [TestMethod]
-//     public void GetAll_ReturnsEmptyListFromDatabase_ItemList()
-//     {
-//       List<Item> newList = new List<Item> { };
-//       List<Item> result = Item.GetAll();
-//       CollectionAssert.AreEqual(newList, result);
-//     }
-//     [TestMethod]
-//     public void Equals_ReturnsTrueIfDescriptionsAreTheSame_Item()
-//     {
-//       Item firstItem = new Item("Mow the lawn");
-//       Item secondItem = new Item("Mow the lawn");
-//       Assert.AreEqual(firstItem, secondItem);
-//     }
+    // [TestMethod]
+    // public void ItemConstructor_CreatesInstanceOfItem_Item()
+    // {
+    //   Item newItem = new Item("test");
+    //   Assert.AreEqual(typeof(Item), newItem.GetType());
+    // }
+    // [TestMethod]
+    // public void GetAll_ReturnsEmptyListFromDatabase_ItemList()
+    // {
+    //   List<Item> newList = new List<Item> { };
+    //   List<Item> result = Item.GetAll();
+    //   CollectionAssert.AreEqual(newList, result);
+    // }
+    [TestMethod]
+    public void Equals_ReturnsTrueIfDescriptionsAreTheSame_Item()
+    {
+      Item firstItem = new Item("Mow the lawn");
+      Item secondItem = new Item("Mow the lawn");
+      Assert.AreEqual(firstItem, secondItem);
+    }
 
-//     [TestMethod]
-//     public void GetDescription_ReturnsDescription_String()
-//     {
-//       string description = "Walk the dog.";
-//       Item newItem = new Item(description);
-//       string result = newItem.Description;
-//       Assert.AreEqual(description, result);
-//     }
+    [TestMethod]
+    public void Save_SavesToDatabase_ItemList()
+    {
+      Item testItem = new Item("Mow the lawn");
+      testItem.Save();
+      List<Item> result = Item.GetAll();
+      List<Item> testList = new List<Item>{testItem};
+      CollectionAssert.AreEqual(testList, result);
+    }
 
-//     [TestMethod]
-//     public void SetDescription_SetDescription_String()
-//     {
-//       string description = "Walk the dog.";
-//       Item newItem = new Item(description);
-//       string updatedDescription = "Do the dishes";
-//       newItem.Description = updatedDescription;
-//       string result = newItem.Description;
-//       Assert.AreEqual(updatedDescription, result);
-//     }
+    // [TestMethod]
+    // public void GetDescription_ReturnsDescription_String()
+    // {
+    //   string description = "Walk the dog.";
+    //   Item newItem = new Item(description);
+    //   string result = newItem.Description;
+    //   Assert.AreEqual(description, result);
+    // }
 
-//     [TestMethod]
-//     public void GetAll_ReturnsEmptyList_ItemList()
-//     {
-//       List<Item> newList = new List<Item> { };
-//       List<Item> result = Item.GetAll();
-//       CollectionAssert.AreEqual(newList, result);
-//     }
+    // [TestMethod]
+    // public void SetDescription_SetDescription_String()
+    // {
+    //   string description = "Walk the dog.";
+    //   Item newItem = new Item(description);
+    //   string updatedDescription = "Do the dishes";
+    //   newItem.Description = updatedDescription;
+    //   string result = newItem.Description;
+    //   Assert.AreEqual(updatedDescription, result);
+    // }
+
+    [TestMethod]
+    public void GetAll_ReturnsEmptyListFromDatabase_ItemList()
+    {
+      List<Item> newList = new List<Item> { };
+      List<Item> result = Item.GetAll();
+      CollectionAssert.AreEqual(newList, result);
+    }
 
 //     [TestMethod]
 //     public void Find_ReturnsCorrectItem_Item()
