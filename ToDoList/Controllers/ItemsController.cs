@@ -23,6 +23,18 @@ _db = db;
       Item thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
 return View(thisItem);
     }
+    public ActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Item item)
+    {
+        _db.Items.Add(item);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
   }
 }
 
