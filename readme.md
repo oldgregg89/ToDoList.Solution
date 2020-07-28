@@ -23,7 +23,7 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 `dotnet add package Pomelo.EntityFrameworkCore.MySql -v 2.2.0`
 in the terminal
 * add a file to the root directory called `appsetting.json`
-* in `appsetting.json` add ![appsetting.json](/Users/iangregg/Desktop/ToDoList.Solution/Assets/Screen Shot 2020-07-22 at 11.08.24 AM.png)
+* in `appsetting.json` add ![appsetting.json](Assets/setup.png)
 * fill in your `server`, `port`,`database`,`uid`, and `pwd`
 
 __
