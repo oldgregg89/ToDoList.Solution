@@ -19,6 +19,12 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 * type dotnet build in the command line to compile the code
 * create a .gitignore file and store the bin and obj folders in .gitignore
 * type dotnet run in the command line to run the program
+* run `dotnet add package Microsoft.EntityFrameworkCore -v 2.2.0`  &
+`dotnet add package Pomelo.EntityFrameworkCore.MySql -v 2.2.0`
+in the terminal
+* add a file to the root directory called `appsetting.json`
+* in `appsetting.json` add ![appsetting.json](/Users/iangregg/Desktop/ToDoList.Solution/Assets/Screen Shot 2020-07-22 at 11.08.24 AM.png)
+* fill in your `server`, `port`,`database`,`uid`, and `pwd`
 
 __
 
